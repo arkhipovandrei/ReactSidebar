@@ -15,9 +15,14 @@ const menuLinks = [
 ]
 
 export const SideBarContext = createContext<{
-  menuLinks: IMenuLink[],
+  menuLinks: IMenuLink[];
+  isClosed: boolean;
+  openSideBar: () => void
+
 }>({
-  menuLinks: []
+  menuLinks: [],
+  isClosed: false,
+  openSideBar: () => {}
 });
 
 const Sidebar = () => {
@@ -28,9 +33,15 @@ const Sidebar = () => {
     setIsClosed(prevState => !prevState);
   }
 
+  const openSideBar = () =>{
+    setIsClosed(false);
+  }
+
   return <>
     <SideBarContext.Provider value={{
-      menuLinks
+      menuLinks,
+      isClosed,
+      openSideBar
     }}>
 
     <nav className={classNames(style.Sidebar, {[style.SidebarClose]: isClosed})}>
