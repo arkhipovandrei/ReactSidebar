@@ -2,11 +2,11 @@ import style from '../../../../assets/style.module.scss';
 import classNames from "classnames";
 import {BiSearch} from "react-icons/bi";
 import {createRef, useContext} from "react";
-import {SideBarContext} from "../../../../Sidebar";
+import SidebarContext from "../../../../SideBarContext";
 
 const SearchBox = () => {
 
-  const {isClosed, openSideBar} = useContext(SideBarContext);
+  const {isClosed, openSideBar} = useContext(SidebarContext);
   const ref = createRef<any>()
 
   const handleClick = () => {

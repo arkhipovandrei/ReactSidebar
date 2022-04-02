@@ -1,29 +1,13 @@
 import style from './assets/style.module.scss';
 import classNames from 'classnames';
-import {BiBarChartAlt2, BiBell, BiChevronRight, BiHomeAlt, BiPieChartAlt} from "react-icons/bi";
+import {BiChevronRight} from "react-icons/bi";
 
-import {createContext, useState} from "react";
+import {useState} from "react";
 import SidebarBrand from "./components/SidebarBrand/SidebarBrand";
 import SidebarMenubar from "./components/SidebarMenubar/SidebarMenubar";
-import IMenuLink from "./components/SidebarMenubar/types/IMenuLink";
+import SidebarContext from './SideBarContext';
+import { menuLinks } from './menuLinks';
 
-const menuLinks = [
-  {icon: BiHomeAlt, text: 'Dashboard'},
-  {icon: BiBarChartAlt2, text: 'Revenue'},
-  {icon: BiBell, text: 'Notifications'},
-  {icon: BiPieChartAlt, text: 'Analytics'},
-]
-
-export const SideBarContext = createContext<{
-  menuLinks: IMenuLink[];
-  isClosed: boolean;
-  openSideBar: () => void
-
-}>({
-  menuLinks: [],
-  isClosed: false,
-  openSideBar: () => {}
-});
 
 const Sidebar = () => {
 
@@ -38,7 +22,7 @@ const Sidebar = () => {
   }
 
   return <>
-    <SideBarContext.Provider value={{
+    <SidebarContext.Provider value={{
       menuLinks,
       isClosed,
       openSideBar
@@ -59,7 +43,8 @@ const Sidebar = () => {
       <SidebarMenubar />
 
     </nav>
-    </SideBarContext.Provider>
+
+    </SidebarContext.Provider>
 
   </>
 }
